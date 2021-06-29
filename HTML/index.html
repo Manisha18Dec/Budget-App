@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- <link href="style.css" rel="stylesheet" type="text/css">   -->
+
+ <title>budget app</title>
+ 
+ </head>
+
+   <body>
+   <div class="container-fluid ">
+   <div class="row">
+    <div class="col-10 mx-auto pt-3">
+    
+    <h3 class="text-uppercase mb-4">Budget App</h3>
+    <div class="row">
+     <div class="col-md-5 my-3 ">
+         <div class="budget-feedback alert   text-capitalize"id="budgetError"></div>  
+      
+       <div id="box color:green"class="border border-success p-3 "> 
+        <form id="addForm" class=" budget-form"> 
+         <h5 class="text-capitalize">please enter your budget</h5>
+         <div class="form-group">
+         <input type="number"style=" width:350px;border:2px solid green;" class="form-control  budget-input" id="budget-input">
+       </div>
+       
+       <button type="submit"style=" width:90px;border:2px solid green;" class="btn  text-capitalize budget-submit " 
+       id="budget-submit" onclick="calculateUser(event)">calculate</button>
+        <div id="button"></div> 
+        
+       
+       </form>
+       </div>
+       </div>
+       <div class="col-md-7">
+      
+      <div class="row my-3">
+        <div class="col-4 text-center mb-2">
+        <h6 class="text-uppercase info-title">budget</h6>
+        <span class="budget-icon"><i class='fa fa-money'style="font-size:60px;color:#0d6efd;"></i></span>
+        <h4 class="text-uppercase mt-2 budget" id="budget"><span style="font-size:40px;color:green;">$ </span><span id="budget-amount"style="font-size:40px;color:green;"id="dollar">0</span></h4>
+      </div>
+       <div class="col-4 text-center">
+        <h6 class="text-uppercase info-title">expenses</h6>
+        <span class="expense-icon"><i class="fa fa-credit-card"style="font-size:60px;color:#0d6efd;"></i></span>
+        <h4 class="text-uppercase mt-2 expense" id="title"><span style="font-size:40px;color:red;">$ </span><span id="expense-amount"style="font-size:40px;color:red;">0</span></h4>
+       </div>
+       <div class="col-4 text-center">
+        <h6 class="text-uppercase info-title">balance</h6>
+        <span class="balance-icon"><i class="fa fa-dollar" style="font-size:60px;color:#0d6efd"></i></span>
+        <h4 class="text-uppercase mt-2 balance" id="amount"> <span style="font-size:40px;color:black;">$ </span><span id="balance-amount"style="font-size:40px;color:black;">0</span></h4>
+       </div>
+       </div>
+       </div>
+       </div>
+
+        <div class="row">
+        <div class="col-md-5 my-3">
+          <div class="budget-feedback alert  text-capitalize" id="amountError"></div>     
+        <div id="box"class="border border-danger p-3">
+          
+        <form id="expense-form " class=" expense-form "> 
+
+        <h5 class="text-capitalize ">please enter your expense</h5>
+        <div class="form-group">
+        <input type="text" style=" width:350px;border:2px solid red;"class= "form-control expense-input" id="expense-input">
+        </div>
+        <h5 class="text-capitalize">please enter expense amount</h5>
+        <div class="form-group">
+        <input type="number" style=" width:350px;border:2px solid red;" class="form-control expense-input " id="amount-input">
+        </div>
+         <!-- <h5 class="text-capitalize"> gst amount</h5>
+        <div class="form-group">
+        <input type="number" style=" width:350px;border:2px solid red;" class="form-control expense-input " id="gst-input">
+        </div>
+        <h5 class="text-capitalize">total amount</h5>
+        
+        <div class="form-group">
+        <input type="number" style=" width:350px;border:2px solid red;" class="form-control expense-input " id="total-input"> -->
+
+    <!-- </div> -->
+ 
+         
+<div class="form-group">
+          <input type="hidden" id="gst-input" name="gst" >
+  
+           </div>
+
+<div class="form-group">
+          <input type="hidden" id="total-input" name="total" >
+  
+           </div>
+
+
+
+
+
+
+         <div class="form-group">
+          <input type="hidden" id="custId" name="custId" >
+  
+           </div>
+        
+        <button type="submit"style=" width:150px;border:2px solid red;"  class="btn text-capitalize expense-submit" id="expense-submit"onclick="addUser(event)">add expense</button>
+        <button type="submit"style=" width:150px;border:2px solid red; display:none"  class="btn text-capitalize expense-submit" id="edit-submit"style= "display:none;"
+         onclick="edit(event)">edit expense</button>
+        <div id="editButton"></div>
+        </form>
+       </div>
+        </div>
+        
+        <div class="col-md-7 my-3">
+      
+         <table class="table table-borderless table-xxl "> '
+      <thead>
+      <tr>
+            
+      <th ><h5>Expense Title</h5></th>
+      <th ><h5>Expense Value</h5></th>
+      <th><h5>GST %</h5></th>
+      <th><h5>Total</h5></th>
+          
+      </tr>
+      </thead>
+      <tbody class="table-row">
+        <!-- <div class="table-row"></div> -->
+      </tbody>
+      </table>
+
+
+
+        <div class="expense-list" id="expense-list">
+          
+
+       </div>
+     </div>
+
+
+
+
+<script type="text/javascript">
+        
+       </script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>  -->
+
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="../js/index.js"></script>
+</body>
+
+</html>
